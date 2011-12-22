@@ -503,7 +503,7 @@ namespace BloodyMess
                 }
                 if (CCTC("Death Strike"))
                     return true;
-                if (CCTC("Blood Strike"))
+                if (CCTC("Heart Strike"))
                     return true;
                 if (CCTC("Necrotic Strike"))
                     return true;
@@ -550,7 +550,7 @@ namespace BloodyMess
             {
                 return true;
             }
-            else if ((Me.HealthPercent < RuneTapPercent || Me.HasAura("Will of the Necropolis")) && CanCast("Rune Tap"))
+            else if ((Me.HealthPercent < RuneTapPercent || (Me.HasAura("Will of the Necropolis") && Me.HealthPercent < RuneTapPercent)) && CanCast("Rune Tap"))
             {
                 return true;
             }
@@ -578,7 +578,7 @@ namespace BloodyMess
                 if (CCTCMe("Death Coil"))
                     return true;
             }
-            if (Me.HealthPercent < RuneTapPercent || Me.HasAura("Will of the Necropolis"))
+            if (Me.HealthPercent < RuneTapPercent || (Me.HasAura("Will of the Necropolis") && Me.HealthPercent < RuneTapPercent))
             {
                 if (CCTC("Rune Tap"))
                     return true;
