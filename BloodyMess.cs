@@ -19,7 +19,7 @@ namespace BloodyMess
 {
     class DeathKnight : CombatRoutine
     {
-        private string vNum = "v0.9";
+        private string vNum = "v0.9.1";
         public override sealed string Name { get { return "Joystick's BloodyMess PVP " + vNum; } }
         public override WoWClass Class { get { return WoWClass.DeathKnight; } }
         private static LocalPlayer Me { get { return ObjectManager.Me; } }
