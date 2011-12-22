@@ -39,11 +39,12 @@ namespace BloodyMess
             Settings.UseDRW = checkBox2.Checked;
             Settings.UseStrangulate = checkBox3.Checked;
             Settings.UseMindFreeze = checkBox4.Checked;
-            Settings.UseDeathGrip = checkBox5.Checked;
+            Settings.UseDeathGripInterrupt = checkBox5.Checked;
             Settings.UseBoneShield = checkBox6.Checked;
             Settings.UseHorn = checkBox7.Checked;
             Settings.DisableMovement = checkBox8.Checked;
             Settings.DisableTargeting = checkBox9.Checked;
+            Settings.UseDeathGrip = checkBox10.Checked;
 
             Settings.VampiricBloodPercent = (int)numericUpDown1.Value;
             Settings.LichbornePercent = (int)numericUpDown2.Value;
@@ -63,11 +64,12 @@ namespace BloodyMess
             checkBox2.Checked = Settings.UseDRW;
             checkBox3.Checked = Settings.UseStrangulate;
             checkBox4.Checked = Settings.UseMindFreeze;
-            checkBox5.Checked = Settings.UseDeathGrip;
+            checkBox5.Checked = Settings.UseDeathGripInterrupt;
             checkBox6.Checked = Settings.UseBoneShield;
             checkBox7.Checked = Settings.UseHorn;
             checkBox8.Checked = Settings.DisableMovement;
             checkBox9.Checked = Settings.DisableTargeting;
+            checkBox10.Checked = Settings.UseDeathGrip;
 
             numericUpDown1.Value = Settings.VampiricBloodPercent;
             numericUpDown2.Value = Settings.LichbornePercent;

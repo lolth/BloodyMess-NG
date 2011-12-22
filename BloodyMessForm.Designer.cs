@@ -72,6 +72,8 @@ namespace BloodyMess
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -86,6 +88,7 @@ namespace BloodyMess
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -388,7 +391,7 @@ namespace BloodyMess
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(236, 397);
+            this.button1.Location = new System.Drawing.Point(236, 433);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 23);
             this.button1.TabIndex = 5;
@@ -399,7 +402,7 @@ namespace BloodyMess
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(333, 397);
+            this.button2.Location = new System.Drawing.Point(333, 433);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(82, 23);
             this.button2.TabIndex = 6;
@@ -433,8 +436,9 @@ namespace BloodyMess
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(165, 51);
             this.label8.TabIndex = 0;
-            this.label8.Text = "*Death Grip will still be used if ranged, this just toggles using it as an Interr" +
-                "upt";
+            this.label8.Text = "*Death Grip will still be used if ranged, if enabled below, this just toggles usi" +
+                "ng it as an Interrupt";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // groupBox7
             // 
@@ -467,13 +471,34 @@ namespace BloodyMess
             this.checkBox8.Text = "Disable Movement";
             this.checkBox8.UseVisualStyleBackColor = true;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.checkBox10);
+            this.groupBox8.Location = new System.Drawing.Point(237, 391);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(182, 36);
+            this.groupBox8.TabIndex = 9;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "When Ranged";
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(10, 15);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(99, 17);
+            this.checkBox10.TabIndex = 0;
+            this.checkBox10.Text = "Use Death Grip";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
             // BloodyMessForm
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button2;
-            this.ClientSize = new System.Drawing.Size(431, 427);
+            this.ClientSize = new System.Drawing.Size(431, 468);
+            this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.button2);
@@ -506,6 +531,8 @@ namespace BloodyMess
             this.groupBox6.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -549,5 +576,7 @@ namespace BloodyMess
         private GroupBox groupBox7;
         private CheckBox checkBox9;
         private CheckBox checkBox8;
+        private GroupBox groupBox8;
+        private CheckBox checkBox10;
     }
 }

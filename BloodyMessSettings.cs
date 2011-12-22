@@ -32,6 +32,9 @@ namespace BloodyMess
         public bool UseStrangulate { get; set; }
 
         [Setting, DefaultValue(true)]
+        public bool UseDeathGripInterrupt { get; set; }
+
+        [Setting, DefaultValue(true)]
         public bool UseDeathGrip { get; set; }
 
         [Setting, DefaultValue(true)]

@@ -19,7 +19,7 @@ namespace BloodyMess
 {
     class DeathKnight : CombatRoutine
     {
-        private string vNum = "v0.9.1";
+        private string vNum = "v0.9.2";
         public override sealed string Name { get { return "Joystick's BloodyMess PVP " + vNum; } }
         public override WoWClass Class { get { return WoWClass.DeathKnight; } }
         private static LocalPlayer Me { get { return ObjectManager.Me; } }
@@ -55,6 +55,10 @@ namespace BloodyMess
         private bool UseStrangulate
         {
             get { return BloodyMessConfig.Settings.UseStrangulate; }
+        }
+        private bool UseDeathGripInterrupt
+        {
+            get { return BloodyMessConfig.Settings.UseDeathGripInterrupt; }
         }
         private bool UseDeathGrip
         {
@@ -140,6 +144,11 @@ namespace BloodyMess
                     return;
                 GetFace();
             }
+            else
+            {
+                if (Me.Mounted)
+                    return;
+            }
             if (!DisableMovement)
             {
                 GetMelee();
@@ -188,7 +197,7 @@ namespace BloodyMess
         public override bool NeedHeal { get { return false; } }
         public override void Heal()
         {
-           
+
         }
         public void HandleFalling() { }
         public override void Combat()
@@ -199,6 +208,11 @@ namespace BloodyMess
                 if (Me.CurrentTarget == null || !Me.GotTarget || !Me.CurrentTarget.Attackable || Me.Stunned || Me.Fleeing || Me.Dead)
                     return;
                 GetFace();
+            }
+            else
+            {
+                if (Me.Mounted)
+                    return;
             }
             if (!DisableMovement)
             {
@@ -236,7 +250,7 @@ namespace BloodyMess
                     }
                 }
             }
-        }  
+        }
         private void AutoAttack()
         {
             if (!Me.IsAutoAttacking)
@@ -266,7 +280,7 @@ namespace BloodyMess
         private void Cast(string spellName)
         {
             Logging.Write(Color.Yellow, "[BloodyMess] Casting " + spellName);
-            if(Me.GotTarget)
+            if (Me.GotTarget)
                 SpellManager.Cast(spellName);
         }
         private void Buff(string spellName)
@@ -282,12 +296,12 @@ namespace BloodyMess
         private void Interrupt(String spellName)
         {
             Logging.Write(Color.Red, "[BloodyMess] Interrupting " + Me.CurrentTarget + "'s " + Me.CurrentTarget.CastingSpell.ToString() + " with " + spellName);
-            if(Me.GotTarget)
+            if (Me.GotTarget)
                 SpellManager.Cast(spellName);
         }
         private bool CCTC(string spellName)
         {
-            if(CanCast(spellName) && Me.GotTarget)
+            if (CanCast(spellName) && Me.GotTarget)
             {
                 Cast(spellName);
                 return true;
@@ -462,7 +476,7 @@ namespace BloodyMess
                         if (CCIC("Mind Freeze"))
                             return true;
                     }
-                    if (Me.CurrentTarget.Distance < 30 && UseDeathGrip)
+                    if (Me.CurrentTarget.Distance < 30 && UseDeathGripInterrupt)
                     {
                         if (CCIC("Death Grip"))
                             return true;
@@ -475,12 +489,13 @@ namespace BloodyMess
         {
             if (Me.GotTarget)
             {
-
-                if (Me.CurrentTarget.Distance < 30)
+                if (Me.CurrentTarget.Distance < 30 && UseDeathGrip && !IsPVPBoss())
                 {
                     if (CCTC("Death Grip"))
                         return true;
-
+                }
+                if (Me.CurrentTarget.Distance < 30)
+                {
                     if (CCTC("Death Coil"))
                         return true;
                 }
@@ -510,7 +525,7 @@ namespace BloodyMess
                 if (CCTC("Death Coil"))
                     return true;
             }
-            
+
             return false;
         }
         private bool UseCooldowns()
@@ -653,5 +668,22 @@ namespace BloodyMess
 
             return false;
         }
-    }   
+
+        private bool IsPVPBoss()
+        {
+            if (Me.CurrentTarget.Name.ToString().Equals("Drek'Thar")
+             || Me.CurrentTarget.Name.ToString().Equals("Vanndar Stormpike")
+             || Me.CurrentTarget.Name.ToString().Equals("Captain Balinda Stonehearth")
+             || Me.CurrentTarget.Name.ToString().Equals("Captain Galvangar")
+             || Me.CurrentTarget.Name.ToString().Equals("High Commander Halford Wyrmbane")
+             || Me.CurrentTarget.Name.ToString().Equals("Overlord Agmar"))
+            {
+                return true;
+            }
+
+
+            return false;
+        }
+
+    }
 }
