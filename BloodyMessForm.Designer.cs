@@ -438,7 +438,6 @@ namespace BloodyMess
             this.label8.TabIndex = 0;
             this.label8.Text = "*Death Grip will still be used if ranged, if enabled below, this just toggles usi" +
                 "ng it as an Interrupt";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // groupBox7
             // 
