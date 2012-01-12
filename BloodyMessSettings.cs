@@ -44,6 +44,12 @@ namespace BloodyMess
         public bool UseDRW { get; set; }
 
         [Setting, DefaultValue(true)]
+        public bool UsePath { get; set; }
+
+        [Setting, DefaultValue(true)]
+        public bool UseBloodTap { get; set; }
+
+        [Setting, DefaultValue(true)]
         public bool UseBoneShield { get; set; }
 
         [Setting, DefaultValue(true)]

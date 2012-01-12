@@ -45,6 +45,8 @@ namespace BloodyMess
             Settings.DisableMovement = checkBox8.Checked;
             Settings.DisableTargeting = checkBox9.Checked;
             Settings.UseDeathGrip = checkBox10.Checked;
+            Settings.UsePath = checkBox11.Checked;
+            Settings.UseBloodTap = checkBox12.Checked;
 
             Settings.VampiricBloodPercent = (int)numericUpDown1.Value;
             Settings.LichbornePercent = (int)numericUpDown2.Value;
@@ -70,6 +72,8 @@ namespace BloodyMess
             checkBox8.Checked = Settings.DisableMovement;
             checkBox9.Checked = Settings.DisableTargeting;
             checkBox10.Checked = Settings.UseDeathGrip;
+            checkBox11.Checked = Settings.UsePath;
+            checkBox12.Checked = Settings.UseBloodTap;
 
             numericUpDown1.Value = Settings.VampiricBloodPercent;
             numericUpDown2.Value = Settings.LichbornePercent;

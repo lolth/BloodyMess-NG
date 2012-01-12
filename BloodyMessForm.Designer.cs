@@ -47,6 +47,7 @@ namespace BloodyMess
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -74,6 +75,7 @@ namespace BloodyMess
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -137,11 +139,12 @@ namespace BloodyMess
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox12);
             this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Location = new System.Drawing.Point(12, 111);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 72);
+            this.groupBox2.Size = new System.Drawing.Size(200, 90);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cooldowns";
@@ -175,7 +178,7 @@ namespace BloodyMess
             this.groupBox3.Controls.Add(this.checkBox5);
             this.groupBox3.Controls.Add(this.checkBox4);
             this.groupBox3.Controls.Add(this.checkBox3);
-            this.groupBox3.Location = new System.Drawing.Point(12, 189);
+            this.groupBox3.Location = new System.Drawing.Point(12, 207);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 87);
             this.groupBox3.TabIndex = 2;
@@ -220,14 +223,27 @@ namespace BloodyMess
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.checkBox11);
             this.groupBox4.Controls.Add(this.checkBox7);
             this.groupBox4.Controls.Add(this.checkBox6);
-            this.groupBox4.Location = new System.Drawing.Point(12, 282);
+            this.groupBox4.Location = new System.Drawing.Point(12, 300);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(200, 70);
+            this.groupBox4.Size = new System.Drawing.Size(200, 94);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Buffs";
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Checked = true;
+            this.checkBox11.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox11.Location = new System.Drawing.Point(7, 67);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(86, 17);
+            this.checkBox11.TabIndex = 2;
+            this.checkBox11.Text = "Path of Frost";
+            this.checkBox11.UseVisualStyleBackColor = true;
             // 
             // checkBox7
             // 
@@ -414,7 +430,7 @@ namespace BloodyMess
             // 
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Controls.Add(this.label8);
-            this.groupBox6.Location = new System.Drawing.Point(237, 252);
+            this.groupBox6.Location = new System.Drawing.Point(237, 295);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(178, 132);
             this.groupBox6.TabIndex = 7;
@@ -428,7 +444,7 @@ namespace BloodyMess
             this.label9.Size = new System.Drawing.Size(162, 71);
             this.label9.TabIndex = 1;
             this.label9.Text = "**Death Strike will always be used in the rotation, this percentage is used if yo" +
-                "u want to use Death Strike as a heal priority before the rotation";
+    "u want to use Death Strike as a heal priority before the rotation";
             // 
             // label8
             // 
@@ -437,13 +453,13 @@ namespace BloodyMess
             this.label8.Size = new System.Drawing.Size(165, 51);
             this.label8.TabIndex = 0;
             this.label8.Text = "*Death Grip will still be used if ranged, if enabled below, this just toggles usi" +
-                "ng it as an Interrupt";
+    "ng it as an Interrupt";
             // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.checkBox9);
             this.groupBox7.Controls.Add(this.checkBox8);
-            this.groupBox7.Location = new System.Drawing.Point(13, 359);
+            this.groupBox7.Location = new System.Drawing.Point(12, 400);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(200, 65);
             this.groupBox7.TabIndex = 8;
@@ -473,9 +489,9 @@ namespace BloodyMess
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.checkBox10);
-            this.groupBox8.Location = new System.Drawing.Point(237, 391);
+            this.groupBox8.Location = new System.Drawing.Point(237, 253);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(182, 36);
+            this.groupBox8.Size = new System.Drawing.Size(178, 36);
             this.groupBox8.TabIndex = 9;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "When Ranged";
@@ -489,6 +505,18 @@ namespace BloodyMess
             this.checkBox10.TabIndex = 0;
             this.checkBox10.Text = "Use Death Grip";
             this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Checked = true;
+            this.checkBox12.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox12.Location = new System.Drawing.Point(7, 67);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(75, 17);
+            this.checkBox12.TabIndex = 2;
+            this.checkBox12.Text = "Blood Tap";
+            this.checkBox12.UseVisualStyleBackColor = true;
             // 
             // BloodyMessForm
             // 
@@ -577,5 +605,7 @@ namespace BloodyMess
         private CheckBox checkBox8;
         private GroupBox groupBox8;
         private CheckBox checkBox10;
+        private CheckBox checkBox11;
+        private CheckBox checkBox12;
     }
 }

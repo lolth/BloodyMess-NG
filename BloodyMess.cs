@@ -19,7 +19,7 @@ namespace BloodyMess
 {
     class DeathKnight : CombatRoutine
     {
-        private string vNum = "v0.9.2";
+        private string vNum = "v0.9.3";
         public override sealed string Name { get { return "Joystick's BloodyMess PVP " + vNum; } }
         public override WoWClass Class { get { return WoWClass.DeathKnight; } }
         private static LocalPlayer Me { get { return ObjectManager.Me; } }
@@ -27,7 +27,14 @@ namespace BloodyMess
 
         private BloodyMessForm BloodyMessConfig;
 
-
+        private bool UseBloodTap
+        {
+            get { return BloodyMessConfig.Settings.UseBloodTap; }
+        }
+        private bool UsePath
+        {
+            get { return BloodyMessConfig.Settings.UsePath; }
+        }
         private bool DisableMovement
         {
             get { return BloodyMessConfig.Settings.DisableMovement; }
@@ -158,13 +165,13 @@ namespace BloodyMess
                 if (MustHeal())
                     return;
             }
-            if (InterruptRotation())
-                return;
             if (CheckBuffs())
             {
-                if (MustBuff())
+                if (Buff())
                     return;
             }
+            if (InterruptRotation())
+                return;
             if (!SpellManager.GlobalCooldown)
             {
                 if (DiseasesRotation())
@@ -184,14 +191,34 @@ namespace BloodyMess
             }
 
         }
-        public override bool NeedPullBuffs { get { return false; } }
-        public override void PullBuff() { }
-        public override bool NeedPreCombatBuffs { get { return false; } }
+        public override bool NeedPullBuffs
+        {
+            get
+            {
+                    return false;
+            }
+        }
+        public override void PullBuff() 
+        {
+        }
+        public override bool NeedPreCombatBuffs
+        {
+            get
+            {
+                return false;
+            }
+        }
         public override void PreCombatBuff()
         {
         }
-        public override bool NeedCombatBuffs { get { return false; } }
-        public override void CombatBuff()
+        public override bool NeedCombatBuffs
+        {
+            get
+            {
+                return false;
+            }
+        }
+        public override void CombatBuff()   
         {
         }
         public override bool NeedHeal { get { return false; } }
@@ -223,13 +250,13 @@ namespace BloodyMess
                 if (MustHeal())
                     return;
             }
-            if (InterruptRotation())
-                return;
             if (CheckBuffs())
             {
-                if (MustBuff())
+                if (Buff())
                     return;
             }
+            if (InterruptRotation())
+                return;
             if (!SpellManager.GlobalCooldown)
             {
                 if (DiseasesRotation())
@@ -270,7 +297,7 @@ namespace BloodyMess
         }
         private bool CanBuff(string spellName)
         {
-            if (SpellManager.CanBuff(spellName))
+            if (SpellManager.CanCast(spellName))
                 return true;
             else
             {
@@ -286,7 +313,7 @@ namespace BloodyMess
         private void Buff(string spellName)
         {
             Logging.Write(Color.Green, "[BloodyMess] Buffing " + spellName);
-            SpellManager.Buff(spellName);
+            SpellManager.Cast(spellName);
         }
         private void CastMe(string spellName)
         {
@@ -496,8 +523,11 @@ namespace BloodyMess
                 }
                 if (Me.CurrentTarget.Distance < 30)
                 {
-                    if (CCTC("Death Coil"))
-                        return true;
+                    if (Me.CurrentRunicPower == Me.MaxRunicPower)
+                    {
+                        if (CCTC("Death Coil"))
+                            return true;
+                    }
                 }
                 if (Me.CurrentTarget.Distance < 20)
                 {
@@ -511,18 +541,16 @@ namespace BloodyMess
         {
             if (Me.GotTarget)
             {
-                if (!Me.CurrentTarget.HasAura("Necrotic Strike"))
+                if (Me.CurrentRunicPower == Me.MaxRunicPower)
                 {
-                    if (CCTC("Necrotic Strike"))
+                    if (CCTC("Death Coil"))
                         return true;
                 }
                 if (CCTC("Death Strike"))
-                    return true;
+                    return true; 
                 if (CCTC("Heart Strike"))
                     return true;
                 if (CCTC("Necrotic Strike"))
-                    return true;
-                if (CCTC("Death Coil"))
                     return true;
             }
 
@@ -530,7 +558,7 @@ namespace BloodyMess
         }
         private bool UseCooldowns()
         {
-            if (UseERW)
+            if (UseERW && !(Me.BloodRuneCount > 0 || Me.UnholyRuneCount > 0 || Me.DeathRuneCount > 0 || Me.FrostRuneCount > 0))
             {
                 if (CCTC("Empower Rune Weapon"))
                     return true;
@@ -538,6 +566,12 @@ namespace BloodyMess
             if (UseDRW)
             {
                 if (CCTC("Dancing Rune Weapon"))
+                    return true;
+            }
+
+            if (UseBloodTap && Me.BloodRuneCount < 2)
+            {
+                if (CCTC("Blood Tap"))
                     return true;
             }
 
@@ -616,59 +650,6 @@ namespace BloodyMess
 
             return false;
         }
-        private bool CheckBuffs()
-        {
-            if ((!Me.HasAura("Bone Shield") && UseBoneShield)
-             || ((!Me.HasAura("Horn of Winter") && !Me.HasAura("Battle Shout")) && UseHorn)
-             || ((!Me.HasAura("Blood Presence") || !BloodPresenceSwitch) && BloodPresence)
-             || (!Me.HasAura("Frost Presence") && FrostPresence)
-             || (!Me.HasAura("Unholy Presence") && UnholyPresence))
-            {
-                return true;
-            }
-            else
-                return false;
-        }
-        private bool MustBuff()
-        {
-            if (!Me.HasAura("Bone Shield") && UseBoneShield)
-            {
-                if (CCTC("Bone Shield"))
-                    return true;
-            }
-            if ((!Me.HasAura("Horn of Winter") && !Me.HasAura("Battle Shout")) && UseHorn)
-            {
-                if (CCTC("Horn of Winter"))
-                    return true;
-            }
-            if ((!Me.HasAura("Blood Presence") || !BloodPresenceSwitch) && BloodPresence)
-            {
-                if (CCTC("Blood Presence"))
-                {
-                    BloodPresenceSwitch = true;
-                    return true;
-                }
-            }
-            if (!Me.HasAura("Frost Presence") && FrostPresence)
-            {
-                if (CCTC("Frost Presence"))
-                {
-                    BloodPresenceSwitch = false;
-                    return true;
-                }
-            }
-            if (!Me.HasAura("Unholy Presence") && UnholyPresence)
-            {
-                if (CCTC("Unholy Presence"))
-                {
-                    BloodPresenceSwitch = false;
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         private bool IsPVPBoss()
         {
             if (Me.CurrentTarget.Name.ToString().Equals("Drek'Thar")
@@ -684,6 +665,85 @@ namespace BloodyMess
 
             return false;
         }
+        public override void Pulse()
+        {
+            if (!Me.Combat)
+            {
+                if (CheckBuffs())
+                {
+                    if (Buff())
+                        return;
+                }
+            }
+        }
+        private bool CheckBuffs()
+        {
+            if (!Me.HasAura("Path of Frost") && UsePath && !Me.Combat)
+                return true;
+	        if ((!BloodPresenceSwitch || Me.HasAura("Unholy Presence") || Me.HasAura("Frost Presence")) && BloodPresence)
+                return true;
+            if (!Me.HasAura("Frost Presence") && FrostPresence)
+                return true;
+            if (!Me.HasAura("Unholy Presence") && UnholyPresence)
+                return true;
+            if (Me.Mounted)
+                return false;
+            if (!Me.HasAura("Bone Shield") && UseBoneShield)
+                return true;
+            if ((!Me.HasAura("Horn of Winter") && !Me.HasAura("Battle Shout")) && UseHorn)
+                return true;
+            
+            return false;
+        }
 
+        private bool Buff()
+        {
+            if (!SpellManager.GlobalCooldown)
+            {
+                if (!Me.HasAura("Bone Shield") && UseBoneShield && !Me.Mounted)
+                {
+                    if (CCBC("Bone Shield"))
+                        return true;
+                }
+                if ((!Me.HasAura("Horn of Winter") && !Me.HasAura("Battle Shout")) && UseHorn && !Me.Mounted)
+                {
+                    if (CCBC("Horn of Winter"))
+                        return true;
+                }
+                if (!Me.HasAura("Path of Frost") && UsePath && !Me.Combat)
+                {
+                    if (CCBC("Path of Frost"))
+                        return true;
+                }
+                if ((!BloodPresenceSwitch || Me.HasAura("Unholy Presence") || Me.HasAura("Frost Presence")) && BloodPresence)
+                {
+                    if (CCBC("Blood Presence"))
+                    {
+                        BloodPresenceSwitch = true;
+                        return true;
+                    }
+                }
+                if (!Me.HasAura("Frost Presence") && FrostPresence)
+                {
+                    if (CCBC("Frost Presence"))
+                    {
+                        BloodPresenceSwitch = false;
+                        return true;
+                    }
+                }
+                if (!Me.HasAura("Unholy Presence") && UnholyPresence)
+                {
+                    if(CCBC("Unholy Presence"))
+                    {
+                        BloodPresenceSwitch = false;
+                        return true;
+                    }
+                }
+
+            }
+
+            return false;
+        }
     }
+  
 }
