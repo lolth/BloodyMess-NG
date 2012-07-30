@@ -695,7 +695,6 @@ namespace BloodyMess
             
             return false;
         }
-
         private bool Buff()
         {
             if (!SpellManager.GlobalCooldown)
