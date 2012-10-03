@@ -5,24 +5,25 @@ using System.Diagnostics;
 using System.Threading;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Media;
 using Styx;
-using Styx.Combat.CombatRoutine;
+using Styx.Common;
+using Styx.CommonBot;
+using Styx.Pathing;
+using Styx.CommonBot.POI;
+using Styx.CommonBot.Routines;
 using Styx.Helpers;
-using Styx.Logic;
-using Styx.Logic.Combat;
-using Styx.Logic.Pathing;
 using Styx.WoWInternals;
 using Styx.WoWInternals.WoWObjects;
-using Styx.Logic.POI;
 
 namespace BloodyMess
 {
     class DeathKnight : CombatRoutine
     {
-        private string vNum = "v0.9.3";
+        private string vNum = "v0.9.4";
         public override sealed string Name { get { return "Joystick's BloodyMess PVP " + vNum; } }
         public override WoWClass Class { get { return WoWClass.DeathKnight; } }
-        private static LocalPlayer Me { get { return ObjectManager.Me; } }
+        private static LocalPlayer Me { get { return StyxWoW.Me; } }
         private bool BloodPresenceSwitch = false;
 
         private BloodyMessForm BloodyMessConfig;
@@ -136,7 +137,7 @@ namespace BloodyMess
         public override void Initialize()
         {
             BloodyMessConfig = new BloodyMessForm();
-            Logging.Write(Color.White, "Joystick's BloodyMess PVP Started");
+            Logging.Write(LogLevel.Normal, Colors.White, "Joystick's BloodyMess PVP Started");
         }
         public override bool NeedRest { get { return false; } }
         public override void Rest()
@@ -147,7 +148,7 @@ namespace BloodyMess
             if (!DisableTargeting)
             {
                 GetTarget();
-                if (Me.CurrentTarget == null || !Me.GotTarget || !Me.CurrentTarget.Attackable || Me.Stunned || Me.Fleeing || Me.Dead)
+                if (Me.CurrentTarget == null || !Me.GotTarget || !Me.CurrentTarget.Attackable || Me.Stunned || Me.Fleeing || Me.IsDead)
                     return;
                 GetFace();
             }
@@ -232,7 +233,7 @@ namespace BloodyMess
             if (!DisableTargeting)
             {
                 GetTarget();
-                if (Me.CurrentTarget == null || !Me.GotTarget || !Me.CurrentTarget.Attackable || Me.Stunned || Me.Fleeing || Me.Dead)
+                if (Me.CurrentTarget == null || !Me.GotTarget || !Me.CurrentTarget.Attackable || Me.Stunned || Me.Fleeing || Me.IsDead)
                     return;
                 GetFace();
             }
@@ -306,23 +307,23 @@ namespace BloodyMess
         }
         private void Cast(string spellName)
         {
-            Logging.Write(Color.Yellow, "[BloodyMess] Casting " + spellName);
+            Logging.Write(LogLevel.Normal, Colors.Yellow, "[BloodyMess] Casting " + spellName);
             if (Me.GotTarget)
                 SpellManager.Cast(spellName);
         }
         private void Buff(string spellName)
         {
-            Logging.Write(Color.Green, "[BloodyMess] Buffing " + spellName);
+            Logging.Write(LogLevel.Normal, Colors.Red, "[BloodyMess] Buffing " + spellName);
             SpellManager.Cast(spellName);
         }
         private void CastMe(string spellName)
         {
-            Logging.Write(Color.Yellow, "[BloodyMess] Casting " + spellName + " on Myself");
+            Logging.Write(LogLevel.Normal, Colors.Yellow, "[BloodyMess] Casting " + spellName + " on Myself");
             SpellManager.Cast(spellName, Me);
         }
         private void Interrupt(String spellName)
         {
-            Logging.Write(Color.Red, "[BloodyMess] Interrupting " + Me.CurrentTarget + "'s " + Me.CurrentTarget.CastingSpell.ToString() + " with " + spellName);
+            Logging.Write(LogLevel.Normal, Colors.Blue, "[BloodyMess] Interrupting " + Me.CurrentTarget + "'s " + Me.CurrentTarget.CastingSpell.ToString() + " with " + spellName);
             if (Me.GotTarget)
                 SpellManager.Cast(spellName);
         }
@@ -378,11 +379,11 @@ namespace BloodyMess
         {
             if (Me.GotTarget)
             {
-                if (Me.CurrentTarget.Distance > 1 && !Me.IsCasting && Styx.BotManager.Current.Name != "LazyRaider")
+                if (Me.CurrentTarget.Distance > 1 && !Me.IsCasting && Styx.CommonBot.BotManager.Current.Name != "LazyRaider")
                 {
                     Navigator.MoveTo(Me.CurrentTarget.Location);
                 }
-                else if (Me.CurrentTarget.Distance <= 1 && Styx.BotManager.Current.Name != "LazyRaider")
+                else if (Me.CurrentTarget.Distance <= 1 && Styx.CommonBot.BotManager.Current.Name != "LazyRaider")
                 {
                     Navigator.PlayerMover.MoveStop();
                 }
@@ -470,10 +471,10 @@ namespace BloodyMess
         }
         private void FindTarget()
         {
-            if (Styx.BotManager.Current.Name != "BG Bot [Beta]" && Styx.BotManager.Current.Name != "PvP")
+            if (Styx.CommonBot.BotManager.Current.Name != "BG Bot [Beta]" && Styx.CommonBot.BotManager.Current.Name != "PvP")
                 return;
             WoWPlayer newTarget = ObjectManager.GetObjectsOfType<WoWPlayer>(false, false).
-                Where(p => p.IsHostile && !p.IsTotem && !p.IsPet && !p.Dead && p.DistanceSqr <= (10 * 10) && !p.Mounted
+                Where(p => p.IsHostile && !p.IsTotem && !p.IsPet && !p.IsDead && p.DistanceSqr <= (10 * 10) && !p.Mounted
                     && !p.HasAura("Ice Block") && !p.HasAura("Spirit of Redemption")).
                 OrderBy(u => u.HealthPercent).FirstOrDefault();
             if (newTarget != null)

@@ -1,13 +1,15 @@
 ﻿using System.IO;
+using System;
 using Styx;
 using Styx.Helpers;
+using Styx.Common;
 
 namespace BloodyMess
 {
     public class BloodyMessSettings : Styx.Helpers.Settings
     {
         public BloodyMessSettings()
-            : base(Path.Combine(Logging.ApplicationPath, string.Format(@"CustomClasses/BloodyMess/BloodyMessSettings_{0}.xml", StyxWoW.Me.Name)))
+            : base(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Routines/BloodyMess/BloodyMessSettings_{0}.xml", StyxWoW.Me.Name)))
         { }
 
         [Setting, DefaultValue(true)]
