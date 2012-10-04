@@ -542,6 +542,11 @@ namespace BloodyMess
         {
             if (Me.GotTarget)
             {
+                if (Me.CurrentTarget.HealthPercent < 40 && !Me.CurrentTarget.HasAura("Soul Reaper"))
+                {
+                    if (CCTC("Soul Reaper"))
+                        return true;
+                }
                 if (Me.CurrentRunicPower == Me.MaxRunicPower)
                 {
                     if (CCTC("Death Coil"))
@@ -570,7 +575,7 @@ namespace BloodyMess
                     return true;
             }
 
-            if (UseBloodTap && Me.BloodRuneCount < 2)
+            if (UseBloodTap && Me.BloodRuneCount < 2 && Me.Auras["Blood Charge"].StackCount >= 5)
             {
                 if (CCTC("Blood Tap"))
                     return true;
