@@ -20,7 +20,7 @@ namespace BloodyMess
 {
     class DeathKnight : CombatRoutine
     {
-        private string vNum = "v0.9.5";
+        private string vNum = "v0.9.6";
         public override sealed string Name { get { return "Joystick's BloodyMess PVP " + vNum; } }
         public override WoWClass Class { get { return WoWClass.DeathKnight; } }
         private static LocalPlayer Me { get { return StyxWoW.Me; } }
@@ -575,10 +575,13 @@ namespace BloodyMess
                     return true;
             }
 
-            if (UseBloodTap && Me.BloodRuneCount < 2 && Me.Auras["Blood Charge"].StackCount >= 5)
+            if (UseBloodTap && Me.BloodRuneCount < 2 && Me.HasAura("Blood Charge"))
             {
-                if (CCTC("Blood Tap"))
-                    return true;
+                if (Me.Auras["Blood Charge"].StackCount >= 5)
+                {
+                    if (CCTC("Blood Tap"))
+                        return true;
+                }
             }
 
             return false;
