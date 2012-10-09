@@ -15,6 +15,7 @@ using Styx.CommonBot.Routines;
 using Styx.Helpers;
 using Styx.WoWInternals;
 using Styx.WoWInternals.WoWObjects;
+using System.IO;
 
 namespace BloodyMess
 {
@@ -24,6 +25,7 @@ namespace BloodyMess
         public override sealed string Name { get { return "Joystick's BloodyMess PVP " + vNum; } }
         public override WoWClass Class { get { return WoWClass.DeathKnight; } }
         private static LocalPlayer Me { get { return StyxWoW.Me; } }
+        public static string baseFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Routines/BloodyMess/"));
         private bool BloodPresenceSwitch = false;
 
         private BloodyMessForm BloodyMessConfig;
@@ -323,7 +325,7 @@ namespace BloodyMess
         }
         private void Interrupt(String spellName)
         {
-            Logging.Write(LogLevel.Normal, Colors.Blue, "[BloodyMess] Interrupting " + Me.CurrentTarget + "'s " + Me.CurrentTarget.CastingSpell.ToString() + " with " + spellName);
+            Logging.Write(LogLevel.Normal, Colors.Blue, "[BloodyMess] Interrupting " + Me.CurrentTarget.Class + "'s " + Me.CurrentTarget.CastingSpell.ToString() + " with " + spellName);
             if (Me.GotTarget)
                 SpellManager.Cast(spellName);
         }
@@ -549,7 +551,7 @@ namespace BloodyMess
                 }
                 if (Me.CurrentRunicPower == Me.MaxRunicPower)
                 {
-                    if (CCTC("Death Coil"))
+                    if (CCTC("Rune Strike"))
                         return true;
                 }
                 if (CCTC("Death Strike"))

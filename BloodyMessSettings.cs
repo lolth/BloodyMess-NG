@@ -9,7 +9,7 @@ namespace BloodyMess
     public class BloodyMessSettings : Styx.Helpers.Settings
     {
         public BloodyMessSettings()
-            : base(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Routines/BloodyMess/BloodyMessSettings_{0}.xml", StyxWoW.Me.Name)))
+            : base(Path.Combine(BloodyMess.DeathKnight.baseFolder, string.Format("BloodyMessSettings_{0}.xml", StyxWoW.Me.Name)))
         { }
 
         [Setting, DefaultValue(true)]
@@ -77,6 +77,9 @@ namespace BloodyMess
 
         [Setting, DefaultValue(90)]
         public int DeathStrikePercent { get; set; }
+
+        [Setting, DefaultValue(1)]
+        public int RevisionNumber { get; set; }
 
     }
 }
