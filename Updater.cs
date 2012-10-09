@@ -103,8 +103,8 @@ namespace BloodyMess
             {
                 if (fi.Name.IndexOf(".new") > -1)
                 {
-                    Logging.Write(LogLevel.Normal, Colors.White, "Renaming " + fi.Name + " to " + FolderName + "\\" + fi.Name.Substring(0, fi.Name.IndexOf(".new")));
-                    fi.MoveTo(FolderName + "\\" + fi.Name.Substring(0, fi.Name.IndexOf(".new")));
+                    Logging.Write(LogLevel.Normal, Colors.White, "Renaming " + fi.Name + " to " + FolderName + fi.Name.Substring(0, fi.Name.IndexOf(".new")));
+                    fi.MoveTo(FolderName + fi.Name.Substring(0, fi.Name.IndexOf(".new")));
                 }
             }
             foreach (DirectoryInfo di in dir.GetDirectories())
