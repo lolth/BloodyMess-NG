@@ -52,6 +52,7 @@ namespace BloodyMess
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -77,6 +78,7 @@ namespace BloodyMess
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -92,6 +94,7 @@ namespace BloodyMess
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -284,6 +287,8 @@ namespace BloodyMess
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.numericUpDown8);
+            this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.numericUpDown7);
             this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.label6);
@@ -300,10 +305,19 @@ namespace BloodyMess
             this.groupBox5.Controls.Add(this.numericUpDown1);
             this.groupBox5.Location = new System.Drawing.Point(237, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(178, 238);
+            this.groupBox5.Size = new System.Drawing.Size(178, 269);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Self Healing Percentages";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(18, 241);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(72, 13);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "Death Siphon";
             // 
             // numericUpDown7
             // 
@@ -443,16 +457,16 @@ namespace BloodyMess
             // 
             this.groupBox6.Controls.Add(this.label9);
             this.groupBox6.Controls.Add(this.label8);
-            this.groupBox6.Location = new System.Drawing.Point(237, 295);
+            this.groupBox6.Location = new System.Drawing.Point(233, 329);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(178, 164);
+            this.groupBox6.Size = new System.Drawing.Size(178, 136);
             this.groupBox6.TabIndex = 7;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Notes";
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(8, 77);
+            this.label9.Location = new System.Drawing.Point(8, 62);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(162, 71);
             this.label9.TabIndex = 1;
@@ -461,7 +475,7 @@ namespace BloodyMess
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(8, 23);
+            this.label8.Location = new System.Drawing.Point(9, 16);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(165, 51);
             this.label8.TabIndex = 0;
@@ -502,7 +516,7 @@ namespace BloodyMess
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.checkBox10);
-            this.groupBox8.Location = new System.Drawing.Point(237, 253);
+            this.groupBox8.Location = new System.Drawing.Point(237, 287);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(178, 36);
             this.groupBox8.TabIndex = 9;
@@ -529,7 +543,13 @@ namespace BloodyMess
             this.button3.Text = "Check for Updates";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            
+            // 
+            // numericUpDown8
+            // 
+            this.numericUpDown8.Location = new System.Drawing.Point(116, 239);
+            this.numericUpDown8.Name = "numericUpDown8";
+            this.numericUpDown8.Size = new System.Drawing.Size(58, 20);
+            this.numericUpDown8.TabIndex = 15;
             // 
             // BloodyMessForm
             // 
@@ -574,6 +594,7 @@ namespace BloodyMess
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -622,5 +643,7 @@ namespace BloodyMess
         private CheckBox checkBox11;
         private CheckBox checkBox12;
         private Button button3;
+        private Label label10;
+        private NumericUpDown numericUpDown8;
     }
 }

@@ -38,6 +38,10 @@ namespace BloodyMess
         {
             get { return BloodyMessConfig.Settings.UsePath; }
         }
+        private int DeathSiphonPercent
+        {
+            get { return BloodyMessConfig.Settings.DeathSiphonPercent; }
+        }
         private bool DisableMovement
         {
             get { return BloodyMessConfig.Settings.DisableMovement; }
@@ -619,6 +623,10 @@ namespace BloodyMess
             {
                 return true;
             }
+            else if (Me.HealthPercent < DeathSiphonPercent && CanCast("Death Siphon") && !SpellManager.GlobalCooldown)
+            {
+                return true;
+            }
 
             return false;
         }
@@ -657,6 +665,11 @@ namespace BloodyMess
             if (Me.CurrentTarget.Distance < 4 && !SpellManager.GlobalCooldown && Me.HealthPercent < DeathStrikePercent)
             {
                 if (CCTC("Death Strike"))
+                    return true;
+            }
+            if (Me.CurrentTarget.Distance < 40 && Me.HealthPercent < DeathSiphonPercent && !SpellManager.GlobalCooldown && Me.GotTarget)
+            {
+                if (CCTC("Death Siphon"))
                     return true;
             }
 

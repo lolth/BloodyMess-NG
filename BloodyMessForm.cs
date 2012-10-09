@@ -49,6 +49,7 @@ namespace BloodyMess
             Settings.AMSPercent = (int)numericUpDown5.Value;
             Settings.IBFPercent = (int)numericUpDown6.Value;
             Settings.DeathStrikePercent = (int)numericUpDown7.Value;
+            Settings.DeathSiphonPercent = (int)numericUpDown8.Value;
 
             Settings.BloodPresence = radioButton1.Checked;
             Settings.FrostPresence = radioButton2.Checked;
@@ -76,10 +77,12 @@ namespace BloodyMess
             numericUpDown5.Value = Settings.AMSPercent;
             numericUpDown6.Value = Settings.IBFPercent;
             numericUpDown7.Value = Settings.DeathStrikePercent;
+            numericUpDown8.Value = Settings.DeathSiphonPercent;
 
             radioButton1.Checked = Settings.BloodPresence;
             radioButton2.Checked = Settings.FrostPresence;
             radioButton3.Checked = Settings.UnholyPresence;
+
         }
 
         private void button1_Click(object sender, EventArgs e)

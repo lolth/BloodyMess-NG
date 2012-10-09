@@ -66,6 +66,9 @@ namespace BloodyMess
         [Setting, DefaultValue(60)]
         public int VampiricBloodPercent { get; set; }
 
+        [Setting, DefaultValue(70)]
+        public int DeathSiphonPercent { get; set; }
+
         [Setting, DefaultValue(60)]
         public int RuneTapPercent { get; set; }
 
