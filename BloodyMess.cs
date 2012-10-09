@@ -140,6 +140,7 @@ namespace BloodyMess
         {
             BloodyMessConfig = new BloodyMessForm();
             Logging.Write(LogLevel.Normal, Colors.White, "Joystick's BloodyMess PVP Started");
+            Updater.CheckForUpdate();
         }
         public override bool NeedRest { get { return false; } }
         public override void Rest()
