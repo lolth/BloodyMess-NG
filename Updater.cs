@@ -142,9 +142,9 @@ namespace BloodyMess
                 {
                     string filePath, dirPath;
                     string relativePath = url.Substring(URL.Length);
-                    dirPath = Path.Combine(HarmoniousVigor.baseFolder,relativePath);
+                    dirPath = Path.Combine(BloodyMess.DeathKnight.baseFolder,relativePath);
                     filePath = Path.Combine(dirPath, file + ".new");
-                    Utils.DLog("Downloading {0}", file);
+                    Logging.Write(LogLevel.Normal, Colors.White, "Downloading {0}", file);
                     if (!Directory.Exists(dirPath))
                         Directory.CreateDirectory(dirPath);
                     client.DownloadFile(newUrl, filePath);
