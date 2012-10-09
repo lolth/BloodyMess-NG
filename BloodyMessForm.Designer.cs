@@ -40,6 +40,7 @@ namespace BloodyMess
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -75,7 +76,7 @@ namespace BloodyMess
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -148,6 +149,18 @@ namespace BloodyMess
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cooldowns";
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Checked = true;
+            this.checkBox12.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox12.Location = new System.Drawing.Point(7, 67);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(75, 17);
+            this.checkBox12.TabIndex = 2;
+            this.checkBox12.Text = "Blood Tap";
+            this.checkBox12.UseVisualStyleBackColor = true;
             // 
             // checkBox2
             // 
@@ -407,9 +420,9 @@ namespace BloodyMess
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(236, 433);
+            this.button1.Location = new System.Drawing.Point(28, 476);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 23);
+            this.button1.Size = new System.Drawing.Size(118, 23);
             this.button1.TabIndex = 5;
             this.button1.Text = "Save/Close";
             this.button1.UseVisualStyleBackColor = true;
@@ -418,9 +431,9 @@ namespace BloodyMess
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(333, 433);
+            this.button2.Location = new System.Drawing.Point(159, 476);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(82, 23);
+            this.button2.Size = new System.Drawing.Size(118, 23);
             this.button2.TabIndex = 6;
             this.button2.Text = "Close";
             this.button2.UseVisualStyleBackColor = true;
@@ -432,14 +445,14 @@ namespace BloodyMess
             this.groupBox6.Controls.Add(this.label8);
             this.groupBox6.Location = new System.Drawing.Point(237, 295);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(178, 132);
+            this.groupBox6.Size = new System.Drawing.Size(178, 164);
             this.groupBox6.TabIndex = 7;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Notes";
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(9, 58);
+            this.label9.Location = new System.Drawing.Point(8, 77);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(162, 71);
             this.label9.TabIndex = 1;
@@ -448,7 +461,7 @@ namespace BloodyMess
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(7, 16);
+            this.label8.Location = new System.Drawing.Point(8, 23);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(165, 51);
             this.label8.TabIndex = 0;
@@ -506,17 +519,15 @@ namespace BloodyMess
             this.checkBox10.Text = "Use Death Grip";
             this.checkBox10.UseVisualStyleBackColor = true;
             // 
-            // checkBox12
+            // button3
             // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Checked = true;
-            this.checkBox12.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox12.Location = new System.Drawing.Point(7, 67);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(75, 17);
-            this.checkBox12.TabIndex = 2;
-            this.checkBox12.Text = "Blood Tap";
-            this.checkBox12.UseVisualStyleBackColor = true;
+            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button3.Location = new System.Drawing.Point(289, 476);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(118, 23);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "Check for Updates";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // BloodyMessForm
             // 
@@ -524,7 +535,8 @@ namespace BloodyMess
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button2;
-            this.ClientSize = new System.Drawing.Size(431, 468);
+            this.ClientSize = new System.Drawing.Size(431, 508);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -607,5 +619,6 @@ namespace BloodyMess
         private CheckBox checkBox10;
         private CheckBox checkBox11;
         private CheckBox checkBox12;
+        private Button button3;
     }
 }

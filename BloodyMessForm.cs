@@ -93,6 +93,11 @@ namespace BloodyMess
 
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Updater.CheckForUpdate();
+        }
+
         public void Form_Load(object sender, EventArgs eArgs)
         {
             UpdateGUIFromSettings();
