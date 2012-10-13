@@ -21,7 +21,7 @@ namespace BloodyMess
 {
     class DeathKnight : CombatRoutine
     {
-        private string vNum = "v0.9.7";
+        private string vNum = "v0.9.8";
         public override sealed string Name { get { return "Joystick's BloodyMess PVP " + vNum; } }
         public override WoWClass Class { get { return WoWClass.DeathKnight; } }
         private static LocalPlayer Me { get { return StyxWoW.Me; } }
@@ -186,12 +186,12 @@ namespace BloodyMess
                     return;
                 if (UseCooldowns())
                     return;
-                if (Me.CurrentTarget.Distance > 4)
+                if (!Me.CurrentTarget.IsWithinMeleeRange)
                 {
                     if (RangedRotation())
                         return;
                 }
-                else if (Me.CurrentTarget.Distance <= 4)
+                else if (Me.CurrentTarget.IsWithinMeleeRange)
                 {
                     if (MeleeRotation())
                         return;
@@ -273,12 +273,12 @@ namespace BloodyMess
                     return;
                 if (Me.GotTarget)
                 {
-                    if (Me.CurrentTarget.Distance > 4)
+                    if (!Me.CurrentTarget.IsWithinMeleeRange)
                     {
                         if (RangedRotation())
                             return;
                     }
-                    else if (Me.CurrentTarget.Distance <= 4)
+                    else if (Me.CurrentTarget.IsWithinMeleeRange)
                     {
                         if (MeleeRotation())
                             return;
@@ -386,11 +386,11 @@ namespace BloodyMess
         {
             if (Me.GotTarget)
             {
-                if (Me.CurrentTarget.Distance > 1 && !Me.IsCasting && Styx.CommonBot.BotManager.Current.Name != "LazyRaider")
+                if (!Me.CurrentTarget.IsWithinMeleeRange && !Me.IsCasting && Styx.CommonBot.BotManager.Current.Name != "LazyRaider")
                 {
                     Navigator.MoveTo(Me.CurrentTarget.Location);
                 }
-                else if (Me.CurrentTarget.Distance <= 1 && Styx.CommonBot.BotManager.Current.Name != "LazyRaider")
+                else if (Me.CurrentTarget.IsWithinMeleeRange && Styx.CommonBot.BotManager.Current.Name != "LazyRaider")
                 {
                     Navigator.PlayerMover.MoveStop();
                 }
@@ -443,7 +443,7 @@ namespace BloodyMess
                         if (CCTC("Outbreak"))
                             return true;
                     }
-                    if (Me.CurrentTarget.Distance < 4)
+                    if (Me.CurrentTarget.IsWithinMeleeRange)
                     {
                         if (CCTC("Plague Strike"))
                             return true;
@@ -506,7 +506,7 @@ namespace BloodyMess
                                 return true;
                         }
                     }
-                    if (Me.CurrentTarget.Distance < 4 && UseMindFreeze)
+                    if (Me.CurrentTarget.IsWithinMeleeRange && UseMindFreeze)
                     {
                         if (CCIC("Mind Freeze"))
                             return true;
@@ -619,7 +619,7 @@ namespace BloodyMess
             {
                 return true;
             }
-            else if (Me.HealthPercent < DeathStrikePercent && CanCast("Death Strike") && Me.CurrentTarget.Distance < 4 && !SpellManager.GlobalCooldown)
+            else if (Me.HealthPercent < DeathStrikePercent && CanCast("Death Strike") && Me.CurrentTarget.IsWithinMeleeRange && !SpellManager.GlobalCooldown)
             {
                 return true;
             }
@@ -662,7 +662,7 @@ namespace BloodyMess
                 if (CCTC("Icebound Fortitude"))
                     return true;
             }
-            if (Me.CurrentTarget.Distance < 4 && !SpellManager.GlobalCooldown && Me.HealthPercent < DeathStrikePercent)
+            if (Me.CurrentTarget.IsWithinMeleeRange && !SpellManager.GlobalCooldown && Me.HealthPercent < DeathStrikePercent)
             {
                 if (CCTC("Death Strike"))
                     return true;
