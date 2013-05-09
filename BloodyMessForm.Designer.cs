@@ -5,9 +5,9 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Data;
 
-namespace BloodyMess
+namespace BloodyMessNG
 {
-    partial class BloodyMessForm
+    partial class BloodyMessNGForm
     {
         /// <summary>
         /// Required designer variable.
@@ -551,7 +551,7 @@ namespace BloodyMess
             this.numericUpDown8.Size = new System.Drawing.Size(58, 20);
             this.numericUpDown8.TabIndex = 15;
             // 
-            // BloodyMessForm
+            // BloodyMessNGForm
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -569,8 +569,8 @@ namespace BloodyMess
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "BloodyMessForm";
-            this.Text = "BloodyMess Beta v0.9 by Joystick Config";
+            this.Name = "BloodyMessNGForm";
+            this.Text = "BloodyMessNG Beta v0.9 by Joystick Config";
             this.Load += new System.EventHandler(this.Form_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

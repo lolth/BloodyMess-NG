@@ -13,17 +13,17 @@ using Styx.Helpers;
 using Styx.WoWInternals;
 using Styx.WoWInternals.WoWObjects;
 
-namespace BloodyMess
+namespace BloodyMessNG
 {
-    public partial class BloodyMessForm : Form
+    public partial class BloodyMessNGForm : Form
     {
-        public BloodyMessSettings Settings;
-        public BloodyMessForm()
+        public BloodyMessNGSettings Settings;
+        public BloodyMessNGForm()
         {
             InitializeComponent();
             if (Settings == null)
             {
-                Settings = new BloodyMessSettings();
+                Settings = new BloodyMessNGSettings();
                 Settings.Load();
             }
         }

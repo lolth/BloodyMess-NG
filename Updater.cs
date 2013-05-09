@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using Styx.Helpers;
 using Styx.Common;
 
-namespace BloodyMess
+namespace BloodyMessNG
 {
     public static class Updater
     {
@@ -21,7 +21,7 @@ namespace BloodyMess
             new Regex(
                 "<h4 style=\"margin-top:0\">Log message</h4>\r?\n?<pre class=\"wrap\" style=\"margin-left:1em\">(?<log>.+\r?\n?.+\r?\n?.+\r?\n?.+\r?\n?.+\r?\n?.+\r?\n?.+\r?\n?.+\r?\n?.+\r?\n?.+\r?\n?.+\r?\n?.+\r?\n?)</pre>",
                 RegexOptions.CultureInvariant);
-        private static BloodyMessForm BloodyMessConfig;
+        private static BloodyMessNGForm BloodyMessNGConfig;
 
         public static void CheckForUpdate()
         {
@@ -29,9 +29,9 @@ namespace BloodyMess
             {
                 Logging.Write(LogLevel.Normal, Colors.White, "Checking for new version");
                 int remoteRev = GetRevision();
-                if(BloodyMessConfig == null)
-                    BloodyMessConfig = new BloodyMessForm();
-                if (BloodyMessConfig.Settings.RevisionNumber != remoteRev)
+                if(BloodyMessNGConfig == null)
+                    BloodyMessNGConfig = new BloodyMessNGForm();
+                if (BloodyMessNGConfig.Settings.RevisionNumber != remoteRev)
                 {
                     Logging.Write(LogLevel.Normal, Colors.White, "A new version was found");
 
@@ -39,20 +39,20 @@ namespace BloodyMess
                     DownloadFilesFromSvn(new WebClient(), URL);
                     Logging.Write(LogLevel.Normal, Colors.White, "Download complete");
                     Logging.Write(LogLevel.Normal, Colors.White, "Removing old files");
-                    clearNonNewFiles(BloodyMess.DeathKnight.baseFolder);
+                    clearNonNewFiles(BloodyMessNG.DeathKnight.baseFolder);
                     Logging.Write(LogLevel.Normal, Colors.White, "Deleting complete");
                     Logging.Write(LogLevel.Normal, Colors.White, "Renaming .new files to usable");
-                    renameFiles(BloodyMess.DeathKnight.baseFolder);
+                    renameFiles(BloodyMessNG.DeathKnight.baseFolder);
                     Logging.Write(LogLevel.Normal, Colors.White, ".new files renamed");
                     Logging.Write(LogLevel.Normal, Colors.White, "Deleting leftover .new files");
-                    clearNewFiles(BloodyMess.DeathKnight.baseFolder);
+                    clearNewFiles(BloodyMessNG.DeathKnight.baseFolder);
                     Logging.Write(LogLevel.Normal, Colors.White, "Done deleting");
-                    BloodyMessConfig.Settings.RevisionNumber = remoteRev;
-                    BloodyMessConfig.Settings.Save();
+                    BloodyMessNGConfig.Settings.RevisionNumber = remoteRev;
+                    BloodyMessNGConfig.Settings.Save();
                     Logging.Write(LogLevel.Normal, Colors.White, "************* Change Log ****************");
                     Logging.Write(LogLevel.Normal, Colors.White, GetChangeLog(remoteRev));
                     Logging.Write(LogLevel.Normal, Colors.White, "*****************************************");
-                    Logging.Write(LogLevel.Normal, Colors.White, "A new version of BloodyMess was installed. Please restart Honorbuddy");
+                    Logging.Write(LogLevel.Normal, Colors.White, "A new version of BloodyMessNG was installed. Please restart Honorbuddy");
                 }
                 else
                 {
@@ -142,7 +142,7 @@ namespace BloodyMess
                 {
                     string filePath, dirPath;
                     string relativePath = url.Substring(URL.Length);
-                    dirPath = Path.Combine(BloodyMess.DeathKnight.baseFolder,relativePath);
+                    dirPath = Path.Combine(BloodyMessNG.DeathKnight.baseFolder,relativePath);
                     filePath = Path.Combine(dirPath, file + ".new");
                     Logging.Write(LogLevel.Normal, Colors.White, "Downloading {0}", file);
                     if (!Directory.Exists(dirPath))

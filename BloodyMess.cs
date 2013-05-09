@@ -17,110 +17,110 @@ using Styx.WoWInternals;
 using Styx.WoWInternals.WoWObjects;
 using System.IO;
 
-namespace BloodyMess
+namespace BloodyMessNG
 {
     class DeathKnight : CombatRoutine
     {
-        private string vNum = "v0.9.8";
-        public override sealed string Name { get { return "Joystick's BloodyMess PVP " + vNum; } }
+        private string vNum = "v1.0.0";
+        public override sealed string Name { get { return "Joystick's BloodyMess (unofficial NG version) PVP " + vNum; } }
         public override WoWClass Class { get { return WoWClass.DeathKnight; } }
         private static LocalPlayer Me { get { return StyxWoW.Me; } }
-        public static string baseFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Routines/BloodyMess/"));
+        public static string baseFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Routines/BloodyMessNG/"));
         private bool BloodPresenceSwitch = false;
 
-        private BloodyMessForm BloodyMessConfig;
+        private BloodyMessNGForm BloodyMessNGConfig;
 
         private bool UseBloodTap
         {
-            get { return BloodyMessConfig.Settings.UseBloodTap; }
+            get { return BloodyMessNGConfig.Settings.UseBloodTap; }
         }
         private bool UsePath
         {
-            get { return BloodyMessConfig.Settings.UsePath; }
+            get { return BloodyMessNGConfig.Settings.UsePath; }
         }
         private int DeathSiphonPercent
         {
-            get { return BloodyMessConfig.Settings.DeathSiphonPercent; }
+            get { return BloodyMessNGConfig.Settings.DeathSiphonPercent; }
         }
         private bool DisableMovement
         {
-            get { return BloodyMessConfig.Settings.DisableMovement; }
+            get { return BloodyMessNGConfig.Settings.DisableMovement; }
         }
         private bool DisableTargeting
         {
-            get { return BloodyMessConfig.Settings.DisableTargeting; }
+            get { return BloodyMessNGConfig.Settings.DisableTargeting; }
         }
         private bool BloodPresence
         {
-            get { return BloodyMessConfig.Settings.BloodPresence; }
+            get { return BloodyMessNGConfig.Settings.BloodPresence; }
         }
         private bool FrostPresence
         {
-            get { return BloodyMessConfig.Settings.FrostPresence; }
+            get { return BloodyMessNGConfig.Settings.FrostPresence; }
         }
         private bool UnholyPresence
         {
-            get { return BloodyMessConfig.Settings.UnholyPresence; }
+            get { return BloodyMessNGConfig.Settings.UnholyPresence; }
         }
         private bool UseMindFreeze
         {
-            get { return BloodyMessConfig.Settings.UseMindFreeze; }
+            get { return BloodyMessNGConfig.Settings.UseMindFreeze; }
         }
         private bool UseStrangulate
         {
-            get { return BloodyMessConfig.Settings.UseStrangulate; }
+            get { return BloodyMessNGConfig.Settings.UseStrangulate; }
         }
         private bool UseDeathGripInterrupt
         {
-            get { return BloodyMessConfig.Settings.UseDeathGripInterrupt; }
+            get { return BloodyMessNGConfig.Settings.UseDeathGripInterrupt; }
         }
         private bool UseDeathGrip
         {
-            get { return BloodyMessConfig.Settings.UseDeathGrip; }
+            get { return BloodyMessNGConfig.Settings.UseDeathGrip; }
         }
         private bool UseERW
         {
-            get { return BloodyMessConfig.Settings.UseERW; }
+            get { return BloodyMessNGConfig.Settings.UseERW; }
         }
         private bool UseDRW
         {
-            get { return BloodyMessConfig.Settings.UseDRW; }
+            get { return BloodyMessNGConfig.Settings.UseDRW; }
         }
         private bool UseBoneShield
         {
-            get { return BloodyMessConfig.Settings.UseBoneShield; }
+            get { return BloodyMessNGConfig.Settings.UseBoneShield; }
         }
         private bool UseHorn
         {
-            get { return BloodyMessConfig.Settings.UseHorn; }
+            get { return BloodyMessNGConfig.Settings.UseHorn; }
         }
         private int LichbornePercent
         {
-            get { return BloodyMessConfig.Settings.LichbornePercent; }
+            get { return BloodyMessNGConfig.Settings.LichbornePercent; }
         }
         private int DeathCoilPercent
         {
-            get { return BloodyMessConfig.Settings.DeathCoilPercent; }
+            get { return BloodyMessNGConfig.Settings.DeathCoilPercent; }
         }
         private int VampiricBloodPercent
         {
-            get { return BloodyMessConfig.Settings.VampiricBloodPercent; }
+            get { return BloodyMessNGConfig.Settings.VampiricBloodPercent; }
         }
         private int RuneTapPercent
         {
-            get { return BloodyMessConfig.Settings.RuneTapPercent; }
+            get { return BloodyMessNGConfig.Settings.RuneTapPercent; }
         }
         private int AMSPercent
         {
-            get { return BloodyMessConfig.Settings.AMSPercent; }
+            get { return BloodyMessNGConfig.Settings.AMSPercent; }
         }
         private int IBFPercent
         {
-            get { return BloodyMessConfig.Settings.IBFPercent; }
+            get { return BloodyMessNGConfig.Settings.IBFPercent; }
         }
         private int DeathStrikePercent
         {
-            get { return BloodyMessConfig.Settings.DeathStrikePercent; }
+            get { return BloodyMessNGConfig.Settings.DeathStrikePercent; }
         }
 
         public override bool WantButton
@@ -132,18 +132,18 @@ namespace BloodyMess
         }
         public override void OnButtonPress()
         {
-            if (BloodyMessConfig != null)
-                BloodyMessConfig.ShowDialog();
+            if (BloodyMessNGConfig != null)
+                BloodyMessNGConfig.ShowDialog();
             else
             {
-                BloodyMessConfig = new BloodyMessForm();
-                BloodyMessConfig.ShowDialog();
+                BloodyMessNGConfig = new BloodyMessNGForm();
+                BloodyMessNGConfig.ShowDialog();
             }
         }
         public override void Initialize()
         {
-            BloodyMessConfig = new BloodyMessForm();
-            Logging.Write(LogLevel.Normal, Colors.White, "Joystick's BloodyMess PVP Started");
+            BloodyMessNGConfig = new BloodyMessNGForm();
+            Logging.Write(LogLevel.Normal, Colors.White, "Joystick's BloodyMess (unofficial NG version) PVP Started");
             Updater.CheckForUpdate();
         }
         public override bool NeedRest { get { return false; } }
@@ -314,23 +314,23 @@ namespace BloodyMess
         }
         private void Cast(string spellName)
         {
-            Logging.Write(LogLevel.Normal, Colors.Yellow, "[BloodyMess] Casting " + spellName);
+            Logging.Write(LogLevel.Normal, Colors.Yellow, "[BloodyMessNG] Casting " + spellName);
             if (Me.GotTarget)
                 SpellManager.Cast(spellName);
         }
         private void Buff(string spellName)
         {
-            Logging.Write(LogLevel.Normal, Colors.Red, "[BloodyMess] Buffing " + spellName);
+            Logging.Write(LogLevel.Normal, Colors.Red, "[BloodyMessNG] Buffing " + spellName);
             SpellManager.Cast(spellName);
         }
         private void CastMe(string spellName)
         {
-            Logging.Write(LogLevel.Normal, Colors.Yellow, "[BloodyMess] Casting " + spellName + " on Myself");
+            Logging.Write(LogLevel.Normal, Colors.Yellow, "[BloodyMessNG] Casting " + spellName + " on Myself");
             SpellManager.Cast(spellName, Me);
         }
         private void Interrupt(String spellName)
         {
-            Logging.Write(LogLevel.Normal, Colors.Blue, "[BloodyMess] Interrupting " + Me.CurrentTarget.Class + "'s " + Me.CurrentTarget.CastingSpell.ToString() + " with " + spellName);
+            Logging.Write(LogLevel.Normal, Colors.Blue, "[BloodyMessNG] Interrupting " + Me.CurrentTarget.Class + "'s " + Me.CurrentTarget.CastingSpell.ToString() + " with " + spellName);
             if (Me.GotTarget)
                 SpellManager.Cast(spellName);
         }

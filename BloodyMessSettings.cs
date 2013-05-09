@@ -4,12 +4,12 @@ using Styx;
 using Styx.Helpers;
 using Styx.Common;
 
-namespace BloodyMess
+namespace BloodyMessNG
 {
-    public class BloodyMessSettings : Styx.Helpers.Settings
+    public class BloodyMessNGSettings : Styx.Helpers.Settings
     {
-        public BloodyMessSettings()
-            : base(Path.Combine(BloodyMess.DeathKnight.baseFolder, string.Format("BloodyMessSettings_{0}.xml", StyxWoW.Me.Name)))
+        public BloodyMessNGSettings()
+            : base(Path.Combine(BloodyMessNG.DeathKnight.baseFolder, string.Format("BloodyMessNGSettings_{0}.xml", StyxWoW.Me.Name)))
         { }
 
         [Setting, DefaultValue(true)]
