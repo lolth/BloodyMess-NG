@@ -69,6 +69,9 @@ namespace BloodyMessNG
         [Setting, DefaultValue(70)]
         public int DeathSiphonPercent { get; set; }
 
+        [Setting, DefaultValue(80)]
+        public int ConversionPercent { get; set; }
+
         [Setting, DefaultValue(60)]
         public int RuneTapPercent { get; set; }
 

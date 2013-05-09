@@ -102,6 +102,10 @@ namespace BloodyMessNG
         {
             get { return BloodyMessNGConfig.Settings.DeathCoilPercent; }
         }
+        private int ConversionPercent
+        {
+            get { return BloodyMessNGConfig.Settings.ConversionPercent; }
+        }
         private int VampiricBloodPercent
         {
             get { return BloodyMessNGConfig.Settings.VampiricBloodPercent; }
@@ -627,6 +631,10 @@ namespace BloodyMessNG
             {
                 return true;
             }
+            else if (Me.HealthPercent < ConversionPercent && !Me.HasAura("Conversion") && Me.CurrentRunicPower >= 5 && CanCast("Conversion"))
+            {
+                return true;
+            }
 
             return false;
         }
@@ -670,6 +678,11 @@ namespace BloodyMessNG
             if (Me.CurrentTarget.Distance < 40 && Me.HealthPercent < DeathSiphonPercent && !SpellManager.GlobalCooldown && Me.GotTarget)
             {
                 if (CCTC("Death Siphon"))
+                    return true;
+            }
+            if (Me.HealthPercent < ConversionPercent && !Me.HasAura("Conversion") && Me.CurrentRunicPower >= 5 && CanCast("Conversion"))
+            {
+                if (CCTC("Conversion"))
                     return true;
             }
 
