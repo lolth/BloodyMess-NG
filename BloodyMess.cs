@@ -144,7 +144,7 @@ namespace BloodyMessNG
         {
             BloodyMessNGConfig = new BloodyMessNGForm();
             Logging.Write(LogLevel.Normal, Colors.White, "Joystick's BloodyMess (unofficial NG version) PVP Started");
-            Updater.CheckForUpdate();
+//            Updater.CheckForUpdate();
         }
         public override bool NeedRest { get { return false; } }
         public override void Rest()
