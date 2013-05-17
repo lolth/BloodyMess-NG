@@ -422,7 +422,7 @@ namespace BloodyMessNG
                     }
                     if (Me.CurrentTarget.Distance < 20)
                     {
-                        if (CCTC("Icy Touch"))
+                        if (CCTC("Chains of Ice"))
                             return true;
                     }
 
@@ -436,7 +436,7 @@ namespace BloodyMessNG
                     }
                     if (Me.CurrentTarget.Distance < 20)
                     {
-                        if (CCTC("Icy Touch"))
+                        if (CCTC("Chains of Ice"))
                             return true;
                     }
                 }
